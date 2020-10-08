@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,7 +9,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { createClient, defaultExchanges, Provider, subscriptionExchange, useSubscription } from 'urql';
-import { withStyles } from '@material-ui/styles';
 
 const subscriptionClient = new SubscriptionClient('wss://react.eogresources.com/graphql', {});
 
@@ -67,7 +65,7 @@ const Box = props => {
 
   const [result] = useSubscription({ query: measurementSubscriptionQuery }, handleSubscription);
 
-  const { fetching, data, error } = result;
+  const { data, error } = result;
 
   useEffect(() => {
     if (error || !data) {
@@ -75,7 +73,7 @@ const Box = props => {
     }
     const newVal = { ...val, [data.metric]: data };
     setVal(newVal);
-  }, [dispatch, data, error]);
+  }, [dispatch, data, error, val]);
 
   return (
     <Grid container direction="row" spacing={2}>
