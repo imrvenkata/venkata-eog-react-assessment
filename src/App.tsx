@@ -11,6 +11,7 @@ import Wrapper from './components/Wrapper';
 // import NowWhat from './components/NowWhat';
 import Equipment from './Features/Metrics';
 import Chart from './Features/Chart';
+import Box from './Features/Box';
 
 const store = createStore();
 const theme = createMuiTheme({
@@ -36,8 +37,10 @@ const App = () => (
       <Wrapper>
         <Header />
         {/* <NowWhat /> */}
+
         <Container>
           <Equipment />
+          <Box />
           <Chart currentTime={currentTime} />
         </Container>
         <ToastContainer />
